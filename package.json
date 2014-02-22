@@ -10,11 +10,7 @@
     "source map",
     "sourceMappingURL",
     "comment",
-    "annotation",
-    "source map",
-    "sourceMappingURL",
-    "annotation",
-    "comment"
+    "annotation"
   ],
   "scripts": {
     "test": "jshint source-mapping-url.js test/ && mocha"
