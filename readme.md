@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/lydell/source-mapping-url.png?branch=master)](https://travis-ci.org/lydell/source-mapping-url)
+
 Overview
 ========
 
