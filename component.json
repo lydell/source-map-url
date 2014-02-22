@@ -1,0 +1,17 @@
+{
+  "name": "source-mapping-url",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "Tools for working with sourceMappingURL comments.",
+  "main": "source-mapping-url.js",
+  "repo": "lydell/source-mapping-url",
+  "keywords": [
+    "source map",
+    "sourceMappingURL",
+    "annotation",
+    "comment"
+  ],
+  "scripts": [
+    "source-mapping-url.js"
+  ]
+}

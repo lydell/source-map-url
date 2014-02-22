@@ -1,0 +1,27 @@
+{
+  "name": "source-mapping-url",
+  "version": "0.1.0",
+  "description": "Tools for working with sourceMappingURL comments.",
+  "author": "Simon Lydell",
+  "license": "MIT",
+  "main": "source-mapping-url.js",
+  "repository": "lydell/source-mapping-url",
+  "keywords": [
+    "source map",
+    "sourceMappingURL",
+    "comment",
+    "annotation",
+    "source map",
+    "sourceMappingURL",
+    "annotation",
+    "comment"
+  ],
+  "scripts": {
+    "test": "jshint source-mapping-url.js test/ && mocha"
+  },
+  "devDependencies": {
+    "mocha": "~1.17.1",
+    "chai": "~1.9.0",
+    "jshint": "~2.4.3"
+  }
+}
