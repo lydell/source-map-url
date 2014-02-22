@@ -45,16 +45,14 @@ Works with CommonJS, AMD and browser globals, through UMD.
 Usage
 =====
 
-`sourceMappingURL.get(code)`
-----------------------------
+### `sourceMappingURL.get(code)` ###
 
 Returns the url of the sourceMappingURL comment in `code`. Returns `null` if
 there is no such comment. Note that the url can be the empty string and that
 both the empty string and `null` are falsy. Consider using `if (url === null)
 {}` rather than `if (url) {}` if you need to tell those two cases apart.
 
-`sourceMappingURL.set(code, url [, commentSyntax])`
----------------------------------------------------
+### `sourceMappingURL.set(code, url [, commentSyntax])` ###
 
 Updates the sourceMappingURL comment in `code` to use `url`. Creates such a
 comment if there is none. Returns the updated `code`.
@@ -70,14 +68,12 @@ source map support in Chrome. A [bug] has been filed about this.
 
 [bug]: http://code.google.com/p/chromium/issues/detail?id=341807
 
-`sourceMappingURL.remove(code)`
--------------------------------
+### `sourceMappingURL.remove(code)` ###
 
 Removes the sourceMappingURL comment in `code`. Does nothing if there is no
 such comment. Returns the updated `code`.
 
-`sourceMappingURL.insertBefore(code, string)`
----------------------------------------------
+### `sourceMappingURL.insertBefore(code, string)` ###
 
 Inserts `string` before the sourceMappingURL comment in `code`. Appends
 `string` to `code` if there is no such comment.
@@ -85,14 +81,12 @@ Inserts `string` before the sourceMappingURL comment in `code`. Appends
 Lets you append something to a file without worrying about breaking the
 sourceMappingURL comment (which needs to be at the end of the file).
 
-`sourceMappingURL.regex`
-------------------------
+### `sourceMappingURL.regex` ###
 
 The regex that is used to match sourceMappingURL comments. It matches both `//`
 and `/**/` comments, thus supporting both JavaScript and CSS.
 
-`sourceMappingURL.SourceMappingURL(commentSyntax)`
---------------------------------------------------
+### `sourceMappingURL.SourceMappingURL(commentSyntax)` ###
 
 Lets you create a new SourceMappingURL instance, using `commentSyntax` as
 default comment syntax for the `set` method.
