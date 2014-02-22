@@ -1,7 +1,7 @@
 {
-  "name": "source-mapping-url",
+  "name": "source-map-url",
   "version": "0.1.0",
-  "main": "source-mapping-url.js",
+  "main": "source-map-url.js",
   "ignore": [
     ".*"
   ]

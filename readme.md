@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/lydell/source-mapping-url.png?branch=master)](https://travis-ci.org/lydell/source-mapping-url)
-[![browser support](https://ci.testling.com/lydell/source-mapping-url.png)](https://ci.testling.com/lydell/source-mapping-url)
+[![Build Status](https://travis-ci.org/lydell/source-map-url.png?branch=master)](https://travis-ci.org/lydell/source-map-url)
+[![browser support](https://ci.testling.com/lydell/source-map-url.png)](https://ci.testling.com/lydell/source-map-url)
 
 Overview
 ========
@@ -7,7 +7,7 @@ Overview
 Tools for working with sourceMappingURL comments.
 
 ```js
-var sourceMappingURL = require("source-mapping-url")
+var sourceMappingURL = require("source-map-url")
 
 var code = [
   "!function(){...}();",
@@ -38,9 +38,9 @@ sourceMappingURL.get(code)
 Installation
 ============
 
-- `npm install source-mapping-url`
-- `bower install source-mapping-url`
-- `component install lydell/source-mapping-url`
+- `npm install source-map-url`
+- `bower install source-map-url`
+- `component install lydell/source-map-url`
 
 Works with CommonJS, AMD and browser globals, through UMD.
 
@@ -98,7 +98,7 @@ For example, if you mainly work with JavaScript code that needs to have source
 map support in Chrome, you could use it like this:
 
 ```js
-var SourceMappingURL = require("source-mapping-url").SourceMappingURL
+var SourceMappingURL = require("source-map-url").SourceMappingURL
 var sourceMappingURL = new SourceMappingURL(["//"])
 ```
 
