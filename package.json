@@ -1,6 +1,6 @@
 {
   "name": "source-map-url",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Tools for working with sourceMappingURL comments.",
   "author": "Simon Lydell",
   "license": "MIT",
