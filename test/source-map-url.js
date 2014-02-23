@@ -113,6 +113,9 @@ describe("sourceMappingURL", function() {
 
         expect(sourceMappingURL.set("code" + newline + comment, "bar", ["//"]))
           .to.equal("code" + newline + "//# sourceMappingURL=bar")
+
+        expect(sourceMappingURL.set("code" + newline + comment, "bar", ["/*\n//", "\n*/\n"]))
+          .to.equal("code" + newline + "/*\n//# sourceMappingURL=bar\n*/\n")
       })
 
     })
@@ -156,7 +159,7 @@ describe("sourceMappingURL", function() {
 
     it("obeys a changed default comment syntax", function() {
       expect(new SourceMappingURL(["Open", "Close"]).set("code\n", "foo"))
-        .to.eql("code\n\nOpen# sourceMappingURL=foo Close")
+        .to.eql("code\n\nOpen# sourceMappingURL=fooClose")
     })
 
   })
@@ -378,7 +381,7 @@ describe("sourceMappingURL", function() {
 
     it("defaults to /**/ comments", function() {
       expect(sourceMappingURL._commentSyntax)
-        .to.eql(["/*", "*/"])
+        .to.eql(["/*", " */"])
     })
 
   })

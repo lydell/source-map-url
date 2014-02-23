@@ -62,7 +62,7 @@ comment if there is none. Returns the updated `code`.
 
 The `commentSyntax` argument is optional. It is an array. The first element of
 it defines how a comment starts, while the second element defines how it ends.
-The default value is `["/*", "*/"]`. `/**/` comments were chosen as default in
+The default value is `["/*", " */"]`. `/**/` comments were chosen as default in
 favor of `//` comments, because ideally they work with both JavaScript and CSS.
 This way, you don’t have to think about what type of code you’re working with.
 However, Chrome sadly does not support `/**/` comments in JavaScript. So

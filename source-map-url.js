@@ -49,9 +49,9 @@ void (function(root, factory) {
     }
     // Use a newline present in the code, or fall back to '\n'.
     var newline = String(code.match(this._newlineRegex) || "\n")
-    var open = commentSyntax[0], close = commentSyntax[1]
+    var open = commentSyntax[0], close = commentSyntax[1] || ""
     code = this.remove(code)
-    return code + newline + open + "# sourceMappingURL=" + url + (close ? " " + close : "")
+    return code + newline + open + "# sourceMappingURL=" + url + close
   }
 
   SourceMappingURL.prototype.remove = function(code) {
@@ -73,6 +73,6 @@ void (function(root, factory) {
 
   SourceMappingURL.prototype.SourceMappingURL = SourceMappingURL
 
-  return new SourceMappingURL(["/*", "*/"])
+  return new SourceMappingURL(["/*", " */"])
 
 }));
