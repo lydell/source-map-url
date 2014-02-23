@@ -1,8 +1,7 @@
-[![Build Status](https://travis-ci.org/lydell/source-map-url.png?branch=master)](https://travis-ci.org/lydell/source-map-url)
-[![browser support](https://ci.testling.com/lydell/source-map-url.png)](https://ci.testling.com/lydell/source-map-url)
-
-Overview
+Overview [![Build Status](https://travis-ci.org/lydell/source-map-url.png?branch=master)](https://travis-ci.org/lydell/source-map-url)
 ========
+
+[![browser support](https://ci.testling.com/lydell/source-map-url.png)](https://ci.testling.com/lydell/source-map-url)
 
 Tools for working with sourceMappingURL comments.
 
