@@ -102,6 +102,14 @@ var sourceMappingURL = new SourceMappingURL(["//"])
 ```
 
 
+Tests
+=====
+
+Start by running `npm test`, which lints the code and runs the test suite in Node.js.
+
+To run the tests in a browser, run `testling` (`npm install -g testling`) or `testling -u`.
+
+
 License
 =======
 
