@@ -1,6 +1,6 @@
 // Copyright 2014 Simon Lydell
 
-var expect = require("chai").expect
+var expect = require("expect.js")
 
 var sourceMappingURL = require("../")
 var SourceMappingURL = sourceMappingURL.SourceMappingURL
@@ -61,7 +61,7 @@ describe("sourceMappingURL", function() {
 
   it("is an instance of SourceMappingURL", function() {
     expect(sourceMappingURL)
-      .to.be.an.instanceOf(SourceMappingURL)
+      .to.be.a(SourceMappingURL)
   })
 
 
