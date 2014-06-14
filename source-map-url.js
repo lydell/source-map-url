@@ -25,7 +25,7 @@ void (function(root, factory) {
       "|" +
       "//(?:" + innerRegex.source + ")" +
     ")" +
-    "\\s*$"
+    "\\s*(?:$|(?:" + newlineRegex.source + "))"
   )
 
   function SourceMappingURL(commentSyntax) {
