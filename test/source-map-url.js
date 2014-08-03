@@ -77,6 +77,13 @@ describe("sourceMappingURL", function() {
         .to.equal("")
     })
 
+
+    it("is detachable", function() {
+      var get = sourceMappingURL.getFrom
+      expect(get("/*# sourceMappingURL=foo */"))
+        .to.equal("foo")
+    })
+
   })
 
 
@@ -101,6 +108,13 @@ describe("sourceMappingURL", function() {
     it("returns false if no comment", function() {
       expect(sourceMappingURL.existsIn("code"))
         .to.equal(false)
+    })
+
+
+    it("is detachable", function() {
+      var has = sourceMappingURL.existsIn
+      expect(has("/*# sourceMappingURL=foo */"))
+        .to.equal(true)
     })
 
   })
@@ -129,6 +143,13 @@ describe("sourceMappingURL", function() {
         .to.equal("code\n")
     })
 
+
+    it("is detachable", function() {
+      var remove = sourceMappingURL.removeFrom
+      expect(remove("/*# sourceMappingURL=foo */"))
+        .to.equal("")
+    })
+
   })
 
 
@@ -153,6 +174,13 @@ describe("sourceMappingURL", function() {
     it("appends if no comment", function() {
       expect(sourceMappingURL.insertBefore("code", "\nmore code"))
         .to.equal("code\nmore code")
+    })
+
+
+    it("is detachable", function() {
+      var insertBefore = sourceMappingURL.insertBefore
+      expect(insertBefore("/*# sourceMappingURL=foo */", "bar"))
+        .to.equal("bar/*# sourceMappingURL=foo */")
     })
 
   })

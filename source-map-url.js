@@ -32,20 +32,20 @@ void (function(root, factory) {
     _innerRegex: innerRegex,
 
     getFrom: function(code) {
-      var match = code.match(this.regex)
+      var match = code.match(regex)
       return (match ? match[1] || match[2] || "" : null)
     },
 
     existsIn: function(code) {
-      return this.regex.test(code)
+      return regex.test(code)
     },
 
     removeFrom: function(code) {
-      return code.replace(this.regex, "")
+      return code.replace(regex, "")
     },
 
     insertBefore: function(code, string) {
-      var match = code.match(this.regex)
+      var match = code.match(regex)
       if (match) {
         return code.slice(0, match.index) + string + code.slice(match.index)
       } else {
