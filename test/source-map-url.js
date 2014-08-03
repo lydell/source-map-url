@@ -4,9 +4,6 @@
 var expect = require("expect.js")
 
 var sourceMappingURL = require("../")
-var SourceMappingURL = sourceMappingURL.SourceMappingURL
-
-"use strict"
 
 var comments = {
 
@@ -32,20 +29,11 @@ var comments = {
 
 }
 
-var newlines = {"\n": "\\n", "\r": "\\r", "\r\n": "\\r\\n"}
-function forEachNewLine(lines, fn) {
-  forOf(newlines, function(newline) {
-    fn(lines.join(newline), newline)
-  })
-}
-
-
 function forEachComment(fn) {
   forOf(comments, function(name, comment) {
-    forEachNewLine(comment, function(comment, newline) {
-      var description = "the '" + name + "' syntax with '" + newlines[newline] + "' newlines"
-      fn(comment, description, newline)
-    })
+    var description = "the '" + name + "' syntax with "
+    fn(comment.join("\n"),   description + "regular newlines")
+    fn(comment.join("\r\n"), description + "Windows newlines")
   })
 }
 
@@ -60,23 +48,17 @@ function forOf(obj, fn) {
 
 describe("sourceMappingURL", function() {
 
-  it("is an instance of SourceMappingURL", function() {
-    expect(sourceMappingURL)
-      .to.be.a(SourceMappingURL)
-  })
-
-
   describe(".get", function() {
 
-    forEachComment(function(comment, description, newline) {
+    forEachComment(function(comment, description) {
 
       it("gets the url from " + description, function() {
-        expect(sourceMappingURL.get("code" + newline + comment))
+        expect(sourceMappingURL.get("code\n" + comment))
           .to.equal("foo.js.map")
-      })
 
+        expect(sourceMappingURL.get("code" + comment))
+          .to.equal("foo.js.map")
 
-      it("gets the url from " + description + ", with no code", function() {
         expect(sourceMappingURL.get(comment))
           .to.equal("foo.js.map")
       })
@@ -98,85 +80,17 @@ describe("sourceMappingURL", function() {
   })
 
 
-  describe(".set", function() {
-
-    forEachComment(function(comment, description, newline) {
-
-      it("updates the comment for " + description, function() {
-        expect(sourceMappingURL.set("code" + newline + comment, "/other/file.js.map"))
-          .to.equal("code" + newline + "/*# sourceMappingURL=/other/file.js.map */")
-      })
-
-
-      it("allows to change comment syntax for " + description, function() {
-        expect(sourceMappingURL.set("code" + newline + comment, "bar", ["//", ""]))
-          .to.equal("code" + newline + "//# sourceMappingURL=bar")
-
-        expect(sourceMappingURL.set("code" + newline + comment, "bar", ["//"]))
-          .to.equal("code" + newline + "//# sourceMappingURL=bar")
-
-        expect(sourceMappingURL.set("code" + newline + comment, "bar", ["/*\n//", "\n*/\n"]))
-          .to.equal("code" + newline + "/*\n//# sourceMappingURL=bar\n*/\n")
-      })
-
-    })
-
-
-    it("tries to use the same newline as the rest of the code", function() {
-      expect(sourceMappingURL.set("code\nmore code", "foo"))
-        .to.eql("code\nmore code\n/*# sourceMappingURL=foo */")
-
-      expect(sourceMappingURL.set("code\rmore code", "foo"))
-        .to.eql("code\rmore code\r/*# sourceMappingURL=foo */")
-
-      expect(sourceMappingURL.set("code\r\nmore code", "foo"))
-        .to.eql("code\r\nmore code\r\n/*# sourceMappingURL=foo */")
-
-      expect(sourceMappingURL.set("a\r\nb\rc\nd", "foo"))
-        .to.eql("a\r\nb\rc\nd\r\n/*# sourceMappingURL=foo */")
-    })
-
-
-    it("defaults to \\n if no newline", function() {
-      expect(sourceMappingURL.set("code", "foo"))
-      .to.equal("code\n/*# sourceMappingURL=foo */")
-    })
-
-
-    it("always adds a newline", function() {
-      expect(sourceMappingURL.set("", "foo"))
-        .to.equal("\n/*# sourceMappingURL=foo */")
-
-      expect(sourceMappingURL.set("code\n", "foo"))
-        .to.equal("code\n\n/*# sourceMappingURL=foo */")
-    })
-
-
-    it("adds a comment if no comment", function() {
-      expect(sourceMappingURL.set("code\n", "/other/file.js.map"))
-        .to.equal("code\n\n/*# sourceMappingURL=/other/file.js.map */")
-    })
-
-
-    it("obeys a changed default comment syntax", function() {
-      expect(new SourceMappingURL(["Open", "Close"]).set("code\n", "foo"))
-        .to.eql("code\n\nOpen# sourceMappingURL=fooClose")
-    })
-
-  })
-
-
   describe(".remove", function() {
 
-    forEachComment(function(comment, description, newline) {
+    forEachComment(function(comment, description) {
 
       it("removes the comment for " + description, function() {
-        expect(sourceMappingURL.remove("code" + newline + comment))
+        expect(sourceMappingURL.remove("code\n" + comment))
+          .to.equal("code\n")
+
+        expect(sourceMappingURL.remove("code" + comment))
           .to.equal("code")
-      })
 
-
-      it("removes the comment for " + description + ", with no code", function() {
         expect(sourceMappingURL.remove(comment))
           .to.equal("")
       })
@@ -194,14 +108,17 @@ describe("sourceMappingURL", function() {
 
   describe(".insertBefore", function() {
 
-    forEachComment(function(comment, description, newline) {
+    forEachComment(function(comment, description) {
 
       it("inserts a string before the comment for " + description, function() {
-        expect(sourceMappingURL.insertBefore("code" + newline + comment, newline + "more code"))
-          .to.equal("code" + newline + "more code" + newline + comment)
+        expect(sourceMappingURL.insertBefore("code\n" + comment, "more code\n"))
+          .to.equal("code\nmore code\n" + comment)
+
+        expect(sourceMappingURL.insertBefore("code" + comment, "\nmore code"))
+          .to.equal("code\nmore code" + comment)
 
         expect(sourceMappingURL.insertBefore(comment, "some code"))
-          .to.equal("some code\n" + comment)
+          .to.equal("some code" + comment)
       })
 
     })
@@ -223,12 +140,6 @@ describe("sourceMappingURL", function() {
     })
 
 
-    it("includes ._newlineRegex", function() {
-      expect(sourceMappingURL.regex.source)
-        .to.contain(sourceMappingURL._newlineRegex.source)
-    })
-
-
     var match = function(code) {
       expect(code)
         .to.match(sourceMappingURL.regex)
@@ -240,31 +151,33 @@ describe("sourceMappingURL", function() {
     }
 
 
-    forEachComment(function(comment, description, newline) {
+    forEachComment(function(comment, description) {
 
-      it("matches " + description + ", even with trailing whitespace", function() {
-        match("code" + newline + comment)
-      })
-
-
-      it("matches " + description + ", with no code", function() {
+      it("matches " + description, function() {
+        match("code\n" + comment)
+        match("code" + comment)
         match(comment)
       })
 
 
       it("matches " + description + ", with trailing whitespace", function() {
         match(comment + "  ")
-        match(comment + newline)
-        match(comment + newline + newline + "\t" + newline + "    \t  ")
+        match(comment + "\n")
+        match(comment + "\n\n\t\n    \t  ")
       })
 
 
       it("only matches " + description + " at the end of files", function() {
-        noMatch("code" + newline + comment + " code")
-        noMatch("code" + newline + comment + newline + "code")
-        noMatch("code" + newline + comment + newline + "// Generated by foobar")
-        noMatch("alert('\\" + newline + comment + "')")
-        noMatch('alert("\\' + newline + comment + '")')
+        noMatch("code\n" + comment + " code")
+        noMatch("code" + comment + " code")
+        noMatch("code\n" + comment + "\ncode")
+        noMatch("code" + comment + "\ncode")
+        noMatch("code\n" + comment + "\n// Generated by foobar")
+        noMatch("code" + comment + "\n// Generated by foobar")
+        noMatch("alert\n('\\" + comment + "')")
+        noMatch("alert('\\" + comment + "')")
+        noMatch('alert\n("\\' + comment + '")')
+        noMatch('alert("\\' + comment + '")')
       })
 
     })
@@ -347,58 +260,6 @@ describe("sourceMappingURL", function() {
     it("supports the legacy syntax", function() {
       expect("@ sourceMappingURL=http://www.example.com/foo/bar.js.map")
         .to.match(sourceMappingURL._innerRegex)
-    })
-
-  })
-
-
-  describe("._newlineRegex", function() {
-
-    var match = function(string) {
-      var newline = string.match(sourceMappingURL._newlineRegex)
-      expect(newline).to.be.ok
-      expect(newline[0]).to.equal(string)
-    }
-
-
-    it("matches \\n", function() {
-      match("\n")
-    })
-
-
-    it("matches \\r", function() {
-      match("\r")
-    })
-
-
-    it("matches \\r\\n", function() {
-      match("\r\n")
-    })
-
-  })
-
-
-  describe("._commentSyntax", function() {
-
-    it("defaults to /**/ comments", function() {
-      expect(sourceMappingURL._commentSyntax)
-        .to.eql(["/*", " */"])
-    })
-
-  })
-
-
-  describe(".SourceMappingURL", function() {
-
-    it("sets ._commentSyntax", function() {
-      expect(new SourceMappingURL(["//", ""])._commentSyntax)
-        .to.eql(["//", ""])
-    })
-
-
-    it("creates an equivalent sourceMappingURL object", function() {
-      expect(new SourceMappingURL(sourceMappingURL._commentSyntax))
-        .to.eql(sourceMappingURL)
     })
 
   })
