@@ -26,6 +26,8 @@
 - Changed: Renamed `.get()` to `.getFrom()`.
 - Changed: Renamed `.remove()` to `.removeFrom()`.
 
+- Added: The `.existsIn()` method.
+
 
 ### Version 0.2.0 (2014-02-23) ###
 

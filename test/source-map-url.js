@@ -80,6 +80,32 @@ describe("sourceMappingURL", function() {
   })
 
 
+  describe(".existsIn", function() {
+
+    forEachComment(function(comment, description) {
+
+      it("returns true for " + description, function() {
+        expect(sourceMappingURL.existsIn("code\n" + comment))
+          .to.equal(true)
+
+        expect(sourceMappingURL.existsIn("code" + comment))
+          .to.equal(true)
+
+        expect(sourceMappingURL.existsIn(comment))
+          .to.equal(true)
+      })
+
+    })
+
+
+    it("returns false if no comment", function() {
+      expect(sourceMappingURL.existsIn("code"))
+        .to.equal(false)
+    })
+
+  })
+
+
   describe(".removeFrom", function() {
 
     forEachComment(function(comment, description) {

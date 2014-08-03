@@ -36,6 +36,10 @@ void (function(root, factory) {
       return (match ? match[1] || match[2] || "" : null)
     },
 
+    existsIn: function(code) {
+      return this.regex.test(code)
+    },
+
     removeFrom: function(code) {
       return code.replace(this.regex, "")
     },

@@ -13,6 +13,9 @@ var code = [
   "/*# sourceMappingURL=foo.js.map */"
 ].join("\n")
 
+sourceMappingURL.existsIn(code)
+// true
+
 sourceMappingURL.getFrom(code)
 // foo.js.map
 
@@ -24,6 +27,9 @@ code = sourceMappingURL.insertBefore(code, "// License: MIT\n")
 code = sourceMappingURL.removeFrom(code)
 // !function(){...}();
 // // License: MIT
+
+sourceMappingURL.existsIn(code)
+// false
 
 sourceMappingURL.getFrom(code)
 // null
@@ -51,9 +57,12 @@ Usage
 ### `sourceMappingURL.getFrom(code)` ###
 
 Returns the url of the sourceMappingURL comment in `code`. Returns `null` if
-there is no such comment. Note that the url can be the empty string and that
-both the empty string and `null` are falsy. Consider using `if (url === null)
-{}` rather than `if (url) {}` if you need to tell those two cases apart.
+there is no such comment.
+
+### `sourceMappingURL.existsIn(code)` ###
+
+Returns `true` if there is a sourceMappingURL comment in `code`, or `false`
+otherwise.
 
 ### `sourceMappingURL.removeFrom(code)` ###
 
