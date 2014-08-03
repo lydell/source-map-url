@@ -13,7 +13,7 @@ var code = [
   "/*# sourceMappingURL=foo.js.map */"
 ].join("\n")
 
-sourceMappingURL.get(code)
+sourceMappingURL.getFrom(code)
 // foo.js.map
 
 code = sourceMappingURL.insertBefore(code, "// License: MIT\n")
@@ -21,11 +21,11 @@ code = sourceMappingURL.insertBefore(code, "// License: MIT\n")
 // // License: MIT
 // /*# sourceMappingURL=foo.js.map */
 
-code = sourceMappingURL.remove(code)
+code = sourceMappingURL.removeFrom(code)
 // !function(){...}();
 // // License: MIT
 
-sourceMappingURL.get(code)
+sourceMappingURL.getFrom(code)
 // null
 
 code += "//# sourceMappingURL=/other/file.js.map"
@@ -48,14 +48,14 @@ Works with CommonJS, AMD and browser globals, through UMD.
 Usage
 =====
 
-### `sourceMappingURL.get(code)` ###
+### `sourceMappingURL.getFrom(code)` ###
 
 Returns the url of the sourceMappingURL comment in `code`. Returns `null` if
 there is no such comment. Note that the url can be the empty string and that
 both the empty string and `null` are falsy. Consider using `if (url === null)
 {}` rather than `if (url) {}` if you need to tell those two cases apart.
 
-### `sourceMappingURL.remove(code)` ###
+### `sourceMappingURL.removeFrom(code)` ###
 
 Removes the sourceMappingURL comment in `code`. Does nothing if there is no
 such comment. Returns the updated `code`.

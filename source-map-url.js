@@ -31,12 +31,12 @@ void (function(root, factory) {
     regex: regex,
     _innerRegex: innerRegex,
 
-    get: function(code) {
+    getFrom: function(code) {
       var match = code.match(this.regex)
       return (match ? match[1] || match[2] || "" : null)
     },
 
-    remove: function(code) {
+    removeFrom: function(code) {
       return code.replace(this.regex, "")
     },
 

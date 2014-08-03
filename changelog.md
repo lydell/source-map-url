@@ -23,6 +23,9 @@
 - Changed: The `.remove()` method no longer removes the newline before the
   sourceMappingURL (if any).
 
+- Changed: Renamed `.get()` to `.getFrom()`.
+- Changed: Renamed `.remove()` to `.removeFrom()`.
+
 
 ### Version 0.2.0 (2014-02-23) ###
 

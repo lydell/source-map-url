@@ -48,18 +48,18 @@ function forOf(obj, fn) {
 
 describe("sourceMappingURL", function() {
 
-  describe(".get", function() {
+  describe(".getFrom", function() {
 
     forEachComment(function(comment, description) {
 
       it("gets the url from " + description, function() {
-        expect(sourceMappingURL.get("code\n" + comment))
+        expect(sourceMappingURL.getFrom("code\n" + comment))
           .to.equal("foo.js.map")
 
-        expect(sourceMappingURL.get("code" + comment))
+        expect(sourceMappingURL.getFrom("code" + comment))
           .to.equal("foo.js.map")
 
-        expect(sourceMappingURL.get(comment))
+        expect(sourceMappingURL.getFrom(comment))
           .to.equal("foo.js.map")
       })
 
@@ -67,31 +67,31 @@ describe("sourceMappingURL", function() {
 
 
     it("returns null if no comment", function() {
-      expect(sourceMappingURL.get("code"))
+      expect(sourceMappingURL.getFrom("code"))
         .to.equal(null)
     })
 
 
     it("can return an empty string as url", function() {
-      expect(sourceMappingURL.get("/*# sourceMappingURL= */"))
+      expect(sourceMappingURL.getFrom("/*# sourceMappingURL= */"))
         .to.equal("")
     })
 
   })
 
 
-  describe(".remove", function() {
+  describe(".removeFrom", function() {
 
     forEachComment(function(comment, description) {
 
       it("removes the comment for " + description, function() {
-        expect(sourceMappingURL.remove("code\n" + comment))
+        expect(sourceMappingURL.removeFrom("code\n" + comment))
           .to.equal("code\n")
 
-        expect(sourceMappingURL.remove("code" + comment))
+        expect(sourceMappingURL.removeFrom("code" + comment))
           .to.equal("code")
 
-        expect(sourceMappingURL.remove(comment))
+        expect(sourceMappingURL.removeFrom(comment))
           .to.equal("")
       })
 
@@ -99,7 +99,7 @@ describe("sourceMappingURL", function() {
 
 
     it("does nothing if no comment", function() {
-      expect(sourceMappingURL.remove("code\n"))
+      expect(sourceMappingURL.removeFrom("code\n"))
         .to.equal("code\n")
     })
 
