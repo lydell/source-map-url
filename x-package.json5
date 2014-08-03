@@ -15,7 +15,9 @@
     npm: {
       repository: "lydell/source-map-url",
       scripts: {
-        test: "jshint source-map-url.js test/ && mocha"
+        lint: "jshint source-map-url.js test/ ",
+        unit: "mocha",
+        test: "npm run lint && npm run unit"
       },
       devDependencies: {
         "mocha": "~1.17.1",
