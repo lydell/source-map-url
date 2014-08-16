@@ -1,4 +1,4 @@
-### Version 0.3.0 (Unreleased) ###
+### Version 0.3.0 (2014-08-16) ###
 
 - Changed: sourceMappingURL comments used to be matched only if they appeared
   on their own line. However, the spec only says:
