@@ -1,2 +1,5 @@
+test/
 .*
-!.jshintrc
+bower.json
+component.json
+x-package.json5
