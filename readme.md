@@ -6,7 +6,7 @@ Overview [![Build Status](https://travis-ci.org/lydell/source-map-url.png?branch
 Tools for working with sourceMappingURL comments.
 
 ```js
-var sourceMappingURL = require("source-map-url")
+import sourceMappingURL from "source-map-url"
 
 var code = [
   "!function(){...}();",

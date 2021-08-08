@@ -1,3 +1,6 @@
+### unreleased (yyy-mm-dd) ###
+- Switched to ESM
+
 ### Version 0.4.1 (2021-02-01) ###
 
 - Improved: The package is now about 50% smaller, by excluding unnecessary
