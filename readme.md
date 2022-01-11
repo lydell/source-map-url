@@ -1,3 +1,10 @@
+Deprecated
+==========
+
+Is npm bugging you about this module being deprecated? You are probably depending on this module via the [source-map-resolve](https://github.com/lydell/source-map-resolve) package, which is [deprecated too](https://github.com/lydell/source-map-resolve#deprecated).
+
+If you are looking for a way to work with source map comments, try [convert-source-map](https://github.com/thlorenz/convert-source-map). This module is just a few wrapper functions around bad regexes.
+
 Overview [![Build Status](https://travis-ci.org/lydell/source-map-url.png?branch=master)](https://travis-ci.org/lydell/source-map-url)
 ========
 
